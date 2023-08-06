@@ -7,6 +7,7 @@ import (
 	"v1/modules/user"
 
 	"github.com/gin-gonic/gin"
+	// _ "github.com/99designs/gqlgen"
 )
 
 func main() {

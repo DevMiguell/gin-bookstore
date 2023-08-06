@@ -11,12 +11,6 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-type UserWithoutPassword struct {
-	ID       int    `json:"ID"`
-	Email    string `json:"email"`
-	Username string `json:"username"`
-}
-
 func Signup(c *gin.Context) {
 	var input CreateUserInput
 
