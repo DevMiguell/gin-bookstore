@@ -102,14 +102,7 @@ func Login(c *gin.Context) {
 func ValidateToken(c *gin.Context) {
 	user, _ := c.Get("user")
 
-	userWithPassword, ok := user.(config.User)
-
-	if !ok {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": "Failed to get user data",
-		})
-		return
-	}
+	userWithPassword, _ := user.(config.User)
 
 	userWithoutPassword := UserWithoutPassword{
 		ID:       int(userWithPassword.ID),

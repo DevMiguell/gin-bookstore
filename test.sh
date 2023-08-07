@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Pacotes para testar
-declare -a test_dirs=("modules/book") # ("modules/book" "modules/other" "modules/another")
+declare -a test_dirs=("modules/book" modules/user) 
 
 # Loop através dos diretórios e executa os testes
 for dir in "${test_dirs[@]}"; do
