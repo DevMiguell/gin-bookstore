@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"os"
 	"time"
-	models "v1/config"
+	config "v1/config"
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v4"
@@ -32,13 +32,13 @@ func Signup(c *gin.Context) {
 		return
 	}
 
-	user := models.User{
+	user := config.User{
 		Email:    input.Email,
 		Username: input.Username,
 		Password: string(hash),
 	}
 
-	models.DB.Create(&user)
+	config.DB.Create(&user)
 
 	c.JSON(http.StatusOK, gin.H{"data": gin.H{
 		"email":    user.Email,
@@ -57,8 +57,8 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	var user models.User
-	models.DB.First(&user, "email = ?", input.Email)
+	var user config.User
+	config.DB.First(&user, "email = ?", input.Email)
 
 	if user.ID == 0 {
 		c.JSON(http.StatusNotFound, gin.H{
@@ -102,7 +102,7 @@ func Login(c *gin.Context) {
 func ValidateToken(c *gin.Context) {
 	user, _ := c.Get("user")
 
-	userWithPassword, ok := user.(models.User)
+	userWithPassword, ok := user.(config.User)
 
 	if !ok {
 		c.JSON(http.StatusInternalServerError, gin.H{

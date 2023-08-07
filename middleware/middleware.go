@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 	"time"
-	models "v1/config"
+	config "v1/config"
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v4"
@@ -56,8 +56,8 @@ func Auth(c *gin.Context) {
 		return
 	}
 
-	var user models.User
-	models.DB.First(&user, "id = ?", id)
+	var user config.User
+	config.DB.First(&user, "id = ?", id)
 
 	if user.ID == 0 {
 		c.JSON(http.StatusUnauthorized, gin.H{

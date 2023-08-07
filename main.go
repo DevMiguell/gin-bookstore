@@ -2,7 +2,7 @@ package main
 
 import (
 	"net/http"
-	models "v1/config"
+	config "v1/config"
 	"v1/modules/book"
 	"v1/modules/user"
 
@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	models.ConnectDatabase()
+	config.ConnectDatabase()
 
 	r := gin.Default()
 
